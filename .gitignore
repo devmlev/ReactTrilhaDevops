@@ -1,36 +1,24 @@
-# Ignore Visual Studio temporary files, build results, and
-yard files.
-
-[DONT_INCLUDE_NOTHING ]
-*.xproj
-*.user
-*.suo
-*.lock.json
-*.dbmdl
-*.jfm
-*.vsp
-*.vssscc
-*.pdb
-*.obj
-*.exe
-*.dll
-*.cache
-*.publish
-*.proj
+# Logs
+logs
 *.log
-*.ncrunchproject
-*.sln.ide
-*.vspx
-*.ncrunchsolution
-# Visual Studio Code
-.vscode/
-# Rider
-.idea/
-# ASP.NET
-wwwroot/lib
-wwwroot/css
-wwwroot/js
-wwwroot/assets
-wwwroot/img
-/.vs/slnx.sqlite
-/.vs/TrilhaDevops.slnx/FileContentIndex
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
