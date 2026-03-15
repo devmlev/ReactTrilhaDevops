@@ -1,16 +1,27 @@
-body {
+.download-page {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.download-page-content {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     max-width: 800px;
     margin: 40px auto;
     padding: 0 20px;
-    color: #333;
 }
 
-h1 {
+.download-title {
     color: #0078d4;
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.download-intro {
+    margin-bottom: 24px;
 }
 
 .download-section {
@@ -28,7 +39,8 @@ h1 {
     margin-bottom: 5px;
 }
 
-.legal-note {
+.download-page .legal-note {
+    background-color: #fff;
     font-size: 0.85em;
     color: #666;
     margin-top: 50px;

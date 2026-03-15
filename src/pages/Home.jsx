@@ -24,13 +24,13 @@ export default function Home() {
   }, [])
 
   return (
-    <>
+    <div className="home-page" id="inicio">
       {/* Header/Navigation */}
       <header>
         <nav>
           <div className="logo">🚀 Trilha DevOps Academy Workshop</div>
           <ul>
-            <li><Link to="/">Home</Link></li>
+            <li><a href="#inicio">Home</a></li>
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#recursos">Recursos</a></li>
             <li><a href="#contato">Contato</a></li>
@@ -179,6 +179,6 @@ export default function Home() {
           <p>&copy; 2026 Trilha DevOps Workshop. Todos os direitos reservados.</p>
         </div>
       </footer>
-    </>
+    </div>
   )
 }

@@ -2,7 +2,7 @@ export default function Privacidade() {
   return (
     <div className="privacidade-page">
       <style>{`
-        .privacidade-page { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .privacidade-page { font-family: sans-serif; line-height: 1.6; color: #333; width: 100%; min-height: 100vh; margin: 0; padding: 40px clamp(20px, 5vw, 72px); }
         .privacidade-page h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
         .privacidade-page h2 { color: #2980b9; margin-top: 30px; }
         .privacidade-page footer { margin-top: 50px; font-size: 0.9em; color: #7f8c8d; text-align: center; }
