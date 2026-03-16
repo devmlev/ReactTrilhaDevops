@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   useEffect(() => {
     const elements = document.querySelectorAll('.scroll-reveal')
     if (!('IntersectionObserver' in window)) {
@@ -23,17 +25,29 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <div className="home-page" id="inicio">
       {/* Header/Navigation */}
       <header>
         <nav>
-          <div className="logo">🚀 Trilha DevOps Academy Workshop</div>
-          <ul>
-            <li><a href="#inicio">Home</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#recursos">Recursos</a></li>
-            <li><a href="#contato">Contato</a></li>
+          <div className="logo">🚀 Trilha DevOps</div>
+          <button
+            className={`nav-toggle${menuOpen ? ' open' : ''}`}
+            aria-label="Abrir menu de navegação"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul className={menuOpen ? 'nav-open' : ''}>
+            <li><a href="#inicio" onClick={closeMenu}>Home</a></li>
+            <li><a href="#sobre" onClick={closeMenu}>Sobre</a></li>
+            <li><a href="#recursos" onClick={closeMenu}>Recursos</a></li>
+            <li><a href="#contato" onClick={closeMenu}>Contato</a></li>
           </ul>
         </nav>
       </header>
