@@ -11,7 +11,7 @@
     --light-color: #f5f5f5;
     --text-color: #333;
     --success-color: #28a745;
-    --anchor-offset: 20px;
+    --anchor-offset: 14px;
     --anchor-offset-mobile: 220px;
 }
 
@@ -223,12 +223,12 @@ nav a:hover {
     /* grid-column: 1 / -1; */
 }
 .antesH3 {
-    margin-top: 3rem;
+    margin-top: 0.25rem;
 }
 
 .about-text h3 {
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
     font-size: 1.3rem;
 }
 
