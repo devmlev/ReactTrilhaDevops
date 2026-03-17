@@ -1,4 +1,4 @@
-function Header({ id, language, onLanguageChange, content }) {
+function Header({ id, language, content }) {
   return (
     <header className="topbar" id={id}>
       <div className="brand" aria-label={content.brandAriaLabel}>
@@ -7,24 +7,22 @@ function Header({ id, language, onLanguageChange, content }) {
       </div>
 
       <nav aria-label={content.languageSwitcherAria}>
-        <button
-          type="button"
+        <a
+          href="/"
           className={`language-link${language === "pt" ? " is-active" : ""}`}
           title={content.ptTitle}
-          aria-pressed={language === "pt"}
-          onClick={() => onLanguageChange("pt")}
+          aria-current={language === "pt" ? "page" : undefined}
         >
           {content.ptLabel}
-        </button>
-        <button
-          type="button"
+        </a>
+        <a
+          href="/en"
           className={`language-link${language === "en" ? " is-active" : ""}`}
           title={content.enTitle}
-          aria-pressed={language === "en"}
-          onClick={() => onLanguageChange("en")}
+          aria-current={language === "en" ? "page" : undefined}
         >
           {content.enLabel}
-        </button>
+        </a>
       </nav>
     </header>
   );
