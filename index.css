@@ -87,15 +87,29 @@ nav {
   justify-content: center;
 }
 
-nav a {
+nav a,
+nav .language-link {
   text-decoration: none;
   color: var(--muted);
   font-size: 0.88rem;
   font-weight: 600;
+  font-family: "Roboto", sans-serif;
   transition: color 170ms ease;
 }
 
-nav a:hover {
+nav .language-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+nav a:hover,
+nav .language-link:hover {
+  color: var(--secondary);
+}
+
+nav .language-link.is-active {
   color: var(--secondary);
 }
 

@@ -34,3 +34,8 @@ wwwroot/assets
 wwwroot/img
 /.vs/slnx.sqlite
 /.vs/TrilhaDevops.slnx/FileContentIndex
+
+# Node / Vite
+node_modules/
+dist/
+*.local
