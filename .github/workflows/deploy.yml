@@ -1,0 +1,36 @@
+name: Deploy Artifacts
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    # Requires the self-hosted runner labelled MLDEV to be registered and online.
+    runs-on: [self-hosted, MLDEV]
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-trilha-devops-dist
+          path: dist/
+          retention-days: 7
