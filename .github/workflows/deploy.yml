@@ -2,25 +2,28 @@ name: Deploy Web App to MLDEV
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
   deploy:
-    # Target your specific runner using its labels
-    runs-on: [self-hosted, MLDEV]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: |
-          npm install
-          # Or your specific build commands
+        run: npm install
 
-      # - name: Deploy Application
-      #   run: |
-      #     # Command to restart your web app or copy files
-      #     # Example for a simple Node app:
-      #     pm2 restart my-web-app || pm2 start app.js --name "my-web-app"
+      - name: Build application
+        run: npm run build
+
+      - name: Deploy Application
+        run: |
+          # Command to restart your web app or copy files
+          # Example for a simple Node app:
+          # pm2 restart my-web-app || pm2 start app.js --name "my-web-app"
+          echo "Deploy step: add your deployment commands here"
