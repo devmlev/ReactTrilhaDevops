@@ -1,0 +1,58 @@
+name: Ansible Playbook - Windows 11 Laptop
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ansible/**'
+      - 'src/**'
+      - 'package.json'
+
+jobs:
+  run-playbook:
+    name: Executar Ansible Playbook no Windows 11
+    runs-on: [Ansible]
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Verificar versão do Ansible
+        run: ansible --version
+
+      - name: Verificar conectividade com o host Windows
+        env:
+          ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_WIN_PASSWORD }}
+        run: |
+          ansible windows -m win_ping -i ansible/inventory.ini
+
+      - name: Executar Playbook de configuração e deploy
+        env:
+          ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_WIN_PASSWORD }}
+        run: |
+          ansible-playbook ansible/playbook.yml \
+            -i ansible/inventory.ini \
+            -v
+
+      - name: Registrar execução no histórico
+        if: always()
+        run: |
+          echo "## Execução: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> HISTORY.md
+          echo "- **Workflow:** ${{ github.workflow }}" >> HISTORY.md
+          echo "- **Run ID:** ${{ github.run_id }}" >> HISTORY.md
+          echo "- **Commit:** ${{ github.sha }}" >> HISTORY.md
+          echo "- **Autor:** ${{ github.actor }}" >> HISTORY.md
+          echo "- **Status:** ${{ job.status }}" >> HISTORY.md
+          echo "" >> HISTORY.md
+
+      - name: Commit e push do histórico atualizado
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add HISTORY.md
+          git diff --cached --quiet || git commit -m "chore: atualizar histórico de execução do playbook [skip ci]"
+          git push
