@@ -25,13 +25,13 @@ jobs:
 
       - name: Verificar conectividade com o host Windows
         env:
-          ANSIBLE_WIN_PASSWORD: Teste@1234
+          ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_PASSWORD }}
         run: |
           ansible windows -m win_ping -i ansible/inventory.ini -v
 
       - name: Executar Playbook de configuração e deploy
         env:
-          ANSIBLE_WIN_PASSWORD: Teste@1234
+          ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_PASSWORD }}
         run: |
           ansible-playbook ansible/playbook.yml \
             -i ansible/inventory.ini \
