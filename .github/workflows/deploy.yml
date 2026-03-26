@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     # Target your specific runner using its labels
-    runs-on: [self-hosted, MLDEV]
+    runs-on: [self-hosted]
 
     steps:
       - name: Checkout code
