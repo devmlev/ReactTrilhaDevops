@@ -2,12 +2,12 @@ name: Ansible Playbook - Windows 11 Laptop
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'ansible/**'
-      - 'src/**'
-      - 'package.json'
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'ansible/**'
+  #     - 'src/**'
+  #     - 'package.json'
 
 jobs:
   run-playbook:
