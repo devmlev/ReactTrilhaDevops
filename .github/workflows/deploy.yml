@@ -19,8 +19,8 @@ jobs:
           ls .
           npm install
 
-      # - name: Deploy Application
-      #   run: |
-      #     # Command to restart your web app or copy files
-      #     # Example for a simple Node app:
-      #     pm2 restart my-web-app || pm2 start app.js --name "my-web-app"
+      - name: Deploy Application
+        run: |
+          # Command to restart your web app or copy files
+          # Example for a simple Node app:
+          pm2 restart my-web-app || pm2 start app.js --name "my-web-app"
