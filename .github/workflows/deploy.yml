@@ -19,6 +19,11 @@ jobs:
           ls .
           npm install
 
-      - name: Run Application
+      - name: Build Application
+        run: npm run build
+
+      - name: Deploy Application
         run: |
-          npm run dev
+          pm2 delete react-trilha-devops
+          if ($LASTEXITCODE -ne 0) { Write-Host "No existing process to delete, continuing..." }
+          pm2 serve ./dist --name "react-trilha-devops" --spa
