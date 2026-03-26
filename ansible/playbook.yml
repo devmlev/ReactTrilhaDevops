@@ -1,0 +1,71 @@
+---
+- name: Configurar e implantar React Trilha DevOps no Windows 11
+  hosts: windows
+  gather_facts: true
+
+  vars:
+    app_dir: "C:\\ReactTrilhaDevops"
+    node_version: "20.19.0"
+    repo_url: "https://github.com/devmlev/ReactTrilhaDevops.git"
+
+  tasks:
+    - name: Garantir que o Chocolatey está instalado
+      win_shell: |
+        if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        }
+      args:
+        executable: powershell
+
+    - name: Instalar Node.js via Chocolatey
+      win_chocolatey:
+        name: nodejs
+        version: "{{ node_version }}"
+        state: present
+
+    - name: Instalar Git via Chocolatey
+      win_chocolatey:
+        name: git
+        state: present
+
+    - name: Criar diretório da aplicação
+      win_file:
+        path: "{{ app_dir }}"
+        state: directory
+
+    - name: Clonar ou atualizar repositório
+      win_shell: |
+        if (Test-Path "{{ app_dir }}\\.git") {
+          cd "{{ app_dir }}"
+          git pull origin main
+        } else {
+          git clone {{ repo_url }} {{ app_dir }}
+        }
+      args:
+        executable: powershell
+
+    - name: Instalar dependências npm
+      win_shell: |
+        cd "{{ app_dir }}"
+        npm install
+      args:
+        executable: powershell
+
+    - name: Fazer build da aplicação React
+      win_shell: |
+        cd "{{ app_dir }}"
+        npm run build
+      args:
+        executable: powershell
+
+    - name: Verificar build gerado
+      win_find:
+        paths: "{{ app_dir }}\\dist"
+        file_type: file
+      register: build_files
+
+    - name: Exibir resultado do build
+      debug:
+        msg: "Build concluído com {{ build_files.files | length }} arquivo(s) gerado(s) em {{ app_dir }}\\dist"
