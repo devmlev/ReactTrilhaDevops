@@ -19,6 +19,6 @@ jobs:
           ls .
           npm install
 
-      - name: Run Application
-        run: |
-          npm run dev
+      # - name: Run Application
+      #   run: |
+      #     npm run dev
