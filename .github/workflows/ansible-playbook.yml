@@ -27,7 +27,7 @@ jobs:
         env:
           ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_WIN_PASSWORD }}
         run: |
-          ansible windows -m win_ping -i ansible/inventory.ini -e "ansible_winrm_server_cert_validation=ignore"
+          ansible windows -m win_ping -i ansible/inventory.ini
 
       - name: Executar Playbook de configuração e deploy
         env:
@@ -35,7 +35,7 @@ jobs:
         run: |
           ansible-playbook ansible/playbook.yml \
             -i ansible/inventory.ini \
-            -v -e "ansible_winrm_server_cert_validation=ignore"
+            -v
 
       - name: Registrar execução no histórico
         if: always()
