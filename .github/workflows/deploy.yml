@@ -10,6 +10,10 @@ jobs:
     # Target your specific runner using its labels
     runs-on: [self-hosted]
 
+    defaults:
+      run:
+        shell: powershell -ExecutionPolicy Bypass -File "{0}"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
