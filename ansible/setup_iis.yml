@@ -37,14 +37,14 @@
       community.windows.win_iis_website:
         name: "MeuSiteAnsible"
         state: started
-        port: 8080
+        port: 8085
         physical_path: C:\inetpub\wwwroot\meusite
       register: website_setup
 
-    - name: 6. Abrir porta 8080 no Firewall do Windows
+    - name: 6. Abrir porta 8085 no Firewall do Windows
       community.windows.win_firewall_rule:
-        name: "IIS Port 8080"
-        localport: 8080
+        name: "IIS Port 8085"
+        localport: 8085
         action: allow
         direction: in
         protocol: tcp
