@@ -19,4 +19,4 @@ jobs:
 
       - name: Executar Playbook
         run: |
-          ansible-playbook -i inventory.ini setup_iis.yml
+          ansible-playbook -vvv -i inventory.ini ansible/setup_iis.yml
