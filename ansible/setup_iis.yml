@@ -1,0 +1,45 @@
+---
+- name: Instalacao e Configuracao do Servidor Web IIS
+  hosts: windows_servers
+  gather_facts: yes
+  tasks:
+
+    - name: 1. Instalar o Servidor Web (IIS)
+      ansible.windows.win_feature:
+        name: Web-Server
+        state: present
+        include_management_tools: yes
+      register: iis_install
+
+    - name: 2. Garantir que o servico IIS (W3SVC) esteja rodando
+      ansible.windows.win_service:
+        name: W3SVC
+        state: started
+        start_mode: auto
+
+    - name: 3. Criar o diretorio para o novo site
+      ansible.windows.win_file:
+        path: C:\inetpub\wwwroot\meusite
+        state: directory
+
+    - name: 4. Criar um arquivo index.html de teste
+      ansible.windows.win_copy:
+        content: "<html><body><h1>Servidor IIS configurado via Ansible!</h1></body></html>"
+        dest: C:\inetpub\wwwroot\meusite\index.html
+
+    - name: 5. Criar e configurar o Web Site no IIS
+      community.windows.win_iis_website:
+        name: "MeuSiteAnsible"
+        state: started
+        port: 8080
+        physical_path: C:\inetpub\wwwroot\meusite
+      register: website_setup
+
+    - name: 6. Abrir porta 8080 no Firewall do Windows
+      community.windows.win_firewall_rule:
+        name: "IIS Port 8080"
+        localport: 8080
+        action: allow
+        direction: in
+        protocol: tcp
+        state: present
