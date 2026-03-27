@@ -4,12 +4,12 @@
   gather_facts: true
   tasks:
 
-    - name: 1. Instalar o Servidor Web (IIS)
-      ansible.windows.win_feature:
-        name: Web-Server
-        state: present
-        include_management_tools: yes
-      register: iis_install
+    # - name: 1. Instalar o Servidor Web (IIS)
+    #   ansible.windows.win_feature:
+    #     name: Web-Server
+    #     state: present
+    #     include_management_tools: yes
+    #   register: iis_install
 
     - name: 1. Instalar o Servidor Web (IIS) no Windows 11
       ansible.windows.win_optional_feature:
