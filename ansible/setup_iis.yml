@@ -1,6 +1,6 @@
 ---
 - name: Instalacao e Configuracao do Servidor Web IIS
-  hosts: windows_servers
+  hosts: windows
   gather_facts: yes
   tasks:
 
