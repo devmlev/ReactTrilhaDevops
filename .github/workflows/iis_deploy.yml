@@ -1,0 +1,22 @@
+name: Deploy IIS via Ansible
+
+on:
+  # push:
+  #   branches: [ main ]
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  ansible-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Criar Arquivo de Inventário Dinâmico
+        run: |
+          echo "[windows_servers]" > inventory.ini
+          echo "${{ secrets.WIN_HOST }} ansible_user=${{ secrets.WIN_USER }} ansible_password='${{ secrets.WIN_PASSWORD }}' ansible_connection=winrm ansible_winrm_server_cert_validation=ignore" >> inventory.ini
+
+      - name: Executar Playbook
+        run: |
+          ansible-playbook -i inventory.ini setup_iis.yml
