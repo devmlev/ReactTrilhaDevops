@@ -14,6 +14,11 @@ jobs:
       - name: Checkout do Código
         uses: actions/checkout@v4    
 
+      - name: Gerar arquivo
+        run: |        
+          echo "arquivo gerado" >> geraarquiuvo/teste.txt
+          ls ./geraarquiuvo/
+
       - name: Executar Playbook de configuração e deploy
         env:
           ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_PASSWORD }}
