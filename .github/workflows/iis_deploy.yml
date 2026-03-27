@@ -7,15 +7,12 @@ on:
 
 jobs:
   ansible-deploy:
-    runs-on: ubuntu-latest
+    runs-on: [Ansible]
+    permissions:
+      contents: write    
     steps:
       - name: Checkout do Código
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pywinrm        
+        uses: actions/checkout@v4    
 
       - name: Executar Playbook de configuração e deploy
         env:
