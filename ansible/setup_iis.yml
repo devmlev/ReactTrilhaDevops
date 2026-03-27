@@ -11,6 +11,11 @@
     #     include_management_tools: yes
     #   register: iis_install
 
+    - name: Debug
+      win_shell: |
+        echo {{ playbook_dir }}
+        
+
     - name: 1. Instalar o Servidor Web (IIS) no Windows 11
       ansible.windows.win_optional_feature:
         name: IIS-WebServerRole  # Nome correto para Windows Desktop (10/11)
