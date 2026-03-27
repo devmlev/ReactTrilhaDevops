@@ -13,5 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Executar Playbook
+        env:
+          ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_PASSWORD }}      
         run: |
           ansible-playbook -vvv -i inventory.ini ansible/setup_iis.yml
