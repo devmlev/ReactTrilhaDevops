@@ -1,7 +1,7 @@
 ---
 - name: Instalacao e Configuracao do Servidor Web IIS
   hosts: windows
-  gather_facts: yes
+  gather_facts: true
   tasks:
 
     - name: 1. Instalar o Servidor Web (IIS)
