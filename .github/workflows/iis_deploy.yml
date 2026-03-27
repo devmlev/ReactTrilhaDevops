@@ -16,8 +16,9 @@ jobs:
 
       - name: Gerar arquivo
         run: |        
-          echo "arquivo gerado" >> geraarquiuvo/teste.txt
-          ls ./geraarquiuvo/
+          mkdir geraarquivo
+          echo "arquivo gerado" >> geraarquivo/teste.txt
+          ls ./geraarquivo/
 
       - name: Executar Playbook de configuração e deploy
         env:
