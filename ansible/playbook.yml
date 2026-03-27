@@ -9,15 +9,15 @@
     repo_url: "https://github.com/devmlev/ReactTrilhaDevops.git"
 
   tasks:
-    # - name: Garantir que o Chocolatey está instalado
-    #   win_shell: |
-    #     if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    #       Set-ExecutionPolicy Bypass -Scope Process -Force
-    #       [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    #       iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    #     }
-    #   args:
-    #     executable: powershell
+    - name: Garantir que o Chocolatey está instalado
+      win_shell: |
+        if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        }
+      args:
+        executable: powershell
 
     - name: Instalar Node.js via Chocolatey
       win_chocolatey:
