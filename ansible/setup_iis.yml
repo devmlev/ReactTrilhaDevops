@@ -13,7 +13,9 @@
 
     - name: Debug
       win_shell: |
-        echo {{ playbook_dir }}
+        echo "playbook_dir: {{ playbook_dir }}"
+      args:
+        executable: powershell        
         
 
     - name: 1. Instalar o Servidor Web (IIS) no Windows 11
