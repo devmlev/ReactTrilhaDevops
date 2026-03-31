@@ -1,0 +1,22 @@
+name: Echo Test
+
+on:
+
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  ansible-deploy:
+    runs-on: [Ansible]
+    permissions:
+      contents: write    
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4    
+
+      - name: Executar Playbook de configuração e deploy
+        env:
+          ANSIBLE_WIN_PASSWORD: ${{ secrets.ANSIBLE_PASSWORD }}
+        run: |
+          ansible-playbook ansible/echo_test.yml \
+            -i ansible/inventory.ini \
+            -vvvv
