@@ -1,0 +1,15 @@
+---
+- name: Instalacao e Configuracao do Servidor Web IIS
+  hosts: windows
+  gather_facts: true
+  tasks:
+
+    - name: Run echo command via win_shell
+      win_shell: |
+          Write-Output "senha=123"
+          Write-Output "password=123"
+      register: shell_output
+
+    - name: Display the output
+      ansible.builtin.debug:
+        msg: "{{ shell_output.stdout }}"
